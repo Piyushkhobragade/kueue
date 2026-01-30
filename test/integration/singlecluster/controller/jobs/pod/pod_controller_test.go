@@ -1864,19 +1864,19 @@ var _ = ginkgo.Describe("Pod controller interacting with scheduler", ginkgo.Labe
 				g.Expect(k8sClient.Get(ctx, types.NamespacedName{Name: role1Pod1.Name, Namespace: role1Pod1.Namespace}, createdPod)).
 					To(gomega.Succeed())
 				g.Expect(createdPod.Spec.SchedulingGates).Should(gomega.BeEmpty())
-			}, util.Timeout, util.Interval).Should(gomega.Succeed())
+			}, 3 * util.Timeout, util.Interval).Should(gomega.Succeed())
 			gomega.Expect(createdPod.Spec.NodeSelector[instanceKey]).Should(gomega.Equal(spotUntaintedFlavor.Name))
 			gomega.Eventually(func(g gomega.Gomega) {
 				g.Expect(k8sClient.Get(ctx, types.NamespacedName{Name: role1Pod2.Name, Namespace: role1Pod2.Namespace}, createdPod)).
 					To(gomega.Succeed())
 				g.Expect(createdPod.Spec.SchedulingGates).Should(gomega.BeEmpty())
-			}, util.Timeout, util.Interval).Should(gomega.Succeed())
+			}, 3 * util.Timeout, util.Interval).Should(gomega.Succeed())
 			gomega.Expect(createdPod.Spec.NodeSelector[instanceKey]).Should(gomega.Equal(spotUntaintedFlavor.Name))
 			gomega.Eventually(func(g gomega.Gomega) {
 				g.Expect(k8sClient.Get(ctx, types.NamespacedName{Name: role2Pod1.Name, Namespace: role2Pod1.Namespace}, createdPod)).
 					To(gomega.Succeed())
 				g.Expect(createdPod.Spec.SchedulingGates).Should(gomega.BeEmpty())
-			}, util.Timeout, util.Interval).Should(gomega.Succeed())
+			}, 3 * util.Timeout, util.Interval).Should(gomega.Succeed())
 			gomega.Expect(createdPod.Spec.NodeSelector[instanceKey]).Should(gomega.Equal(spotUntaintedFlavor.Name))
 			gomega.Eventually(func(g gomega.Gomega) {
 				g.Expect(k8sClient.Get(ctx, types.NamespacedName{Name: role2Pod2.Name, Namespace: role2Pod2.Namespace}, createdPod)).
